@@ -1,31 +1,49 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div style="display: flex; justify-content: center; width: 100%;">
+
+      <v-card style="width: 50%; height: 20%; padding: 16px;">
+        <h4> CryptoCofre</h4>
+
+        <v-form v-model="valid">
+          <v-text-field
+          label="E-mail"
+          v-model="email"
+          :rules="emailRules"
+          required
+          ></v-text-field>
+          <v-text-field type="password"
+          label="Password"
+          v-model="password"
+          :rules="passwordRules"
+          required
+          ></v-text-field>
+
+           <v-btn block color="primary">Login</v-btn>
+        </v-form>
+      </v-card>
+    </div>
   </div>
 </template>
-
+input-group input-group--required input-group--text-field primary--text
+input-group input-group--error input-group--required input-group--text-field error--text
 <script>
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      valid: false,
+      password: '',
+      passwordRules: [
+        (v) => !!v || 'Name is required',
+        (v) => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      email: '',
+      emailRules: [
+        (v) => !!v || 'E-mail is required',
+        (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+      ]
     }
   }
 }
@@ -33,6 +51,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+form {
+  width: 100%;
+}
 h1, h2 {
   font-weight: normal;
 }
