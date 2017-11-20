@@ -1,12 +1,10 @@
 // @ts-check
 // Get dependencies
-// const express = require("express");
+const express = require("express");
 const path = require("path");
 const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-import * as express from 'express'
 
 // Get our API routes
 const api = require("./server/routes/api");
@@ -26,7 +24,7 @@ app.use("/api", api);
 
 // Catch all other routes and return the index file
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"));
+  // res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
 /**
