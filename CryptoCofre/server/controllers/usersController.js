@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('Promise', Promise);
+mongoose.Promise = global.Promise;
 const User = mongoose.model('User');
 
 exports.get = (req, res, next) => {
