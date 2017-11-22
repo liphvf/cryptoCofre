@@ -1,13 +1,18 @@
 // @ts-check
 // Get dependencies
+const mongoose = require('mongoose')
 const express = require("express");
 const path = require("path");
 const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-// Get our API routes
-const api = require("./server/routes/api");
+mongoose.connect('mongodb://test:test@ds115396.mlab.com:15396/criptocofre', { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
+// Get models
+const User = require('./server/models/users');
+
 
 const app = express();
 
@@ -19,8 +24,11 @@ app.use(cors());
 // Point static path to dist
 app.use(express.static(path.join(__dirname, "dist")));
 
+// Get our API routes
+const userRoute = require("./server/routes/userRoute");
+
 // Set our api routes
-app.use("/api", api);
+app.use("/api/user", userRoute);
 
 // Catch all other routes and return the index file
 app.get("*", (req, res) => {
