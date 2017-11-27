@@ -7,12 +7,14 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-mongoose.connect('mongodb://test:test@ds115396.mlab.com:15396/criptocofre', { useMongoClient: true });
+const config = require("./config");
+
+mongoose.connect(config.connectionString, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 // Get models
-const User = require('./server/models/users');
-const Password = require('./server/models/passwords');
+const User = require('./models/users');
+const Password = require('./models/passwords');
 
 
 const app = express();
@@ -26,9 +28,9 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "dist")));
 
 // Get our API routes
-const userRoute = require("./server/routes/userRoute");
-const passwordRoute = require("./server/routes/passwordRoute");
-const authRoute = require("./server/routes/authRoute");
+const userRoute = require("./routes/userRoute");
+const passwordRoute = require("./routes/passwordRoute");
+const authRoute = require("./routes/authRoute");
 
 // Set our api routes
 app.use("/api/user", userRoute);
