@@ -21,7 +21,8 @@ exports.post = async (req, res, next) => {
     user.password = crypto.getHash(user.password);
     await user.save();
     res.status(201).send({
-      mensage: "Usuário cadastrado!"
+      mensage: `Usuário cadastrado! Por favor, salve seu token: ${user.token}`,
+      token: user.token
     });
   } catch (e) {
     res.status(500).send({
