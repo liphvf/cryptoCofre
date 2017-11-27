@@ -8,7 +8,8 @@ const schema = new Schema({
     login: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     password: {
         type: String,

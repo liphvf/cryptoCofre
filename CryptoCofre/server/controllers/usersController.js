@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 // mongoose.Promise = global.Promise;
 const User = mongoose.model("User");
-const crypto = require("../services/cryptoService")
+const crypto = require("../services/cryptoService");
 
 exports.get = async (req, res, next) => {
   const result = User.find({}, function(err, users) {
