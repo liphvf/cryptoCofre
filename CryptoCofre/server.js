@@ -12,6 +12,7 @@ mongoose.Promise = global.Promise;
 
 // Get models
 const User = require('./server/models/users');
+const Password = require('./server/models/passwords');
 
 
 const app = express();
@@ -26,9 +27,11 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 // Get our API routes
 const userRoute = require("./server/routes/userRoute");
+const passwordRoute = require("./server/routes/passwordRoute");
 
 // Set our api routes
 app.use("/api/user", userRoute);
+app.use("/api/user", passwordRoute);
 
 // Catch all other routes and return the index file
 app.get("*", (req, res) => {
