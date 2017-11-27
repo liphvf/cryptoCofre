@@ -1,5 +1,4 @@
 <template>
-<div id="app">
   <v-app id="inspire">
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
@@ -25,7 +24,8 @@
             </div>
           </v-card-title>
           <v-card-actions>
-            <v-btn flat color="blue">Entrar</v-btn>
+            
+            <router-link to="/home" style=""><v-btn flat color="blue">Entrar</v-btn></router-link>
             <v-btn flat color="orange">Cadastrar</v-btn>
           </v-card-actions>
         </v-card>
@@ -38,39 +38,37 @@
 <script>
 export default {
     login: "Login",
-    el: "#app",
     data() {
         return {
             card_text:
                 "Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.",
-        valid: false,
-        login: '',
-        loginRules: [
-          (v) => !!v || 'login is required',
-        ],
-        password: '',
-        passwordRules: [
-          (v) => !!v || 'E-mail is required',
-          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ]
-        };
+            valid: false,
+            login: "",
+            loginRules: [v => !!v || "login is required"],
+            password: "",
+            passwordRules: [
+                v => !!v || "E-mail is required",
+                v =>
+                    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+                    "E-mail must be valid"
+            ]
+        }
     }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-#app {
-  margin: 0px;
-}
-
 form {
-  width: 100%;
+    width: 100%;
 }
 
 .input-group__input {
-  width: 100%
+    width: 100%;
+}
+
+a:link{
+  text-decoration: none;
 }
 /* 
 h1, h2 {
