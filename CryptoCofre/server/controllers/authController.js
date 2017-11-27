@@ -2,14 +2,16 @@ const mongoose = require("mongoose");
 const Password = mongoose.model("Password");
 const crypto = require("../services/cryptoService")
 
+const userController = require("./usersController");
+
 exports.authenticate = async(req, res, next) => {
     try {
-        const customer = await repository.authenticate({
+        const user = await userController.authenticateUsere({
             email: req.body.email,
-            password: md5(req.body.password + global.SALT_KEY)
+            password: req.body.password
         });
 
-        if (!customer) {
+        if (!user) {
             res.status(404).send({
                 message: 'Usuário ou senha inválidos'
             });
@@ -17,17 +19,17 @@ exports.authenticate = async(req, res, next) => {
         }
 
         const token = await authService.generateToken({
-            id: customer._id,
-            email: customer.email,
-            name: customer.name,
-            roles: customer.roles
+            id: user._id,
+            email: user.email,
+            name: user.name,
+            // roles: user.roles
         });
 
         res.status(201).send({
             token: token,
             data: {
-                email: customer.email,
-                name: customer.name
+                email: user.email,
+                name: user.name
             }
         });
     } catch (e) {

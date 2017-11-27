@@ -16,6 +16,20 @@ exports.get = async (req, res, next) => {
   }
 };
 
+exports.authenticateUser = async (data) => {
+  try {
+    let result = await User.findOne({
+      login: data.login,
+      password: crypto.getHash(data.password)
+    });
+
+    return result;
+    
+  } catch (e) {
+    throw new Error('Usuário ou senha incorreta');
+  }
+};
+
 exports.post = async (req, res, next) => {
   try {
     let user = new User(req.body);
