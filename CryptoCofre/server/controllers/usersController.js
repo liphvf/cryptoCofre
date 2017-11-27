@@ -19,7 +19,7 @@ exports.post = async (req, res, next) => {
   try {
     let user = new User(req.body);
     user.password = crypto.getHash(user.password);
-    user.save();
+    await user.save();
     res.status(201).send({
       mensage: "Usuário cadastrado!"
     });
