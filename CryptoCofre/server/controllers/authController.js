@@ -30,6 +30,7 @@ exports.authenticate = async(req, res, next) => {
         res.status(201).send({
             token: token,
             data: {
+                id: user._id,
                 login: user.login,
                 name: user.name
             }

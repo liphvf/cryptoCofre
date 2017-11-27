@@ -16,6 +16,12 @@ exports.get = async (req, res, next) => {
   }
 };
 
+exports.getByIdInternal = async (id) => {
+    let result = await User.findById(id);
+
+    return result;
+};
+
 exports.authenticateUser = async (data) => {
   try {
     let result = await User.findOne({
