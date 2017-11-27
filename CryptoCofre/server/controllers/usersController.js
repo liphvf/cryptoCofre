@@ -4,15 +4,16 @@ const User = mongoose.model("User");
 const crypto = require("../services/cryptoService");
 
 exports.get = async (req, res, next) => {
-  const result = User.find({}, function(err, users) {
-    var userList = {};
+  try {
+    let result = await User.find({});
 
-    users.forEach(function(user) {
-      userList[user._id] = user;
+    res.send(result);
+    
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
     });
-
-    res.send(userList);
-  });
+  }
 };
 
 exports.post = async (req, res, next) => {
