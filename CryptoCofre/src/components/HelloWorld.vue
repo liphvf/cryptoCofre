@@ -25,11 +25,10 @@
     </div>
   </div>
 </template>
-input-group input-group--required input-group--text-field primary--text
-input-group input-group--error input-group--required input-group--text-field error--text
+
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -51,7 +50,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+/* 
 form {
   width: 100%;
 }
@@ -71,5 +70,5 @@ li {
 
 a {
   color: #42b983;
-}
+} */
 </style>
