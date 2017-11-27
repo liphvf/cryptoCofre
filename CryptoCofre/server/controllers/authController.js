@@ -4,10 +4,12 @@ const crypto = require("../services/cryptoService")
 
 const userController = require("./usersController");
 
+const authService = require("../services/authService");
+
 exports.authenticate = async(req, res, next) => {
     try {
-        const user = await userController.authenticateUsere({
-            email: req.body.email,
+        const user = await userController.authenticateUser({
+            login: req.body.login,
             password: req.body.password
         });
 
@@ -20,7 +22,7 @@ exports.authenticate = async(req, res, next) => {
 
         const token = await authService.generateToken({
             id: user._id,
-            email: user.email,
+            login: user.login,
             name: user.name,
             // roles: user.roles
         });
@@ -28,13 +30,13 @@ exports.authenticate = async(req, res, next) => {
         res.status(201).send({
             token: token,
             data: {
-                email: user.email,
+                login: user.login,
                 name: user.name
             }
         });
     } catch (e) {
         res.status(500).send({
-            message: 'Falha ao processar sua requisição'
+            message: `Falha ao processar sua requisição:  ${e.message}`
         });
     }
 };
@@ -55,7 +57,7 @@ exports.refreshToken = async(req, res, next) => {
 
         const tokenData = await authService.generateToken({
             id: customer._id,
-            email: customer.email,
+            login: customer.login,
             name: customer.name,
             roles: customer.roles
         });
@@ -63,7 +65,7 @@ exports.refreshToken = async(req, res, next) => {
         res.status(201).send({
             token: token,
             data: {
-                email: customer.email,
+                login: customer.login,
                 name: customer.name
             }
         });

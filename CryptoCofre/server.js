@@ -32,7 +32,8 @@ const authRoute = require("./server/routes/authRoute");
 
 // Set our api routes
 app.use("/api/user", userRoute);
-app.use("/api/user", passwordRoute);
+app.use("/api/password", passwordRoute);
+app.use("/api/auth", authRoute);
 
 // Catch all other routes and return the index file
 app.get("*", (req, res) => {
