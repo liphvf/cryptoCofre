@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 // Get our API routes
 const userRoute = require("./server/routes/userRoute");
 const passwordRoute = require("./server/routes/passwordRoute");
+const authRoute = require("./server/routes/authRoute");
 
 // Set our api routes
 app.use("/api/user", userRoute);

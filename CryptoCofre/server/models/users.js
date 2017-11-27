@@ -18,7 +18,7 @@ const schema = new Schema({
     required: true,
     trim: true
   },
-  token: {
+  secondPass: {
     type: String,
     required: true,
     trim: true,
