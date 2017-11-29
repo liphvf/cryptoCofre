@@ -30,12 +30,9 @@ export default {
   },
   methods: {
     post: function () {
-      this.$http.post("http://localhost:3000/api/auth/authenticate", {
+      auth.login(this, {
         login: this.login,
         password: this.password
-      }).then((data)=>{
-        console.log("resposta",data)
-        this.token = data.body.token;
       })
     }
   }
