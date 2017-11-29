@@ -13,7 +13,7 @@ export default {
   },
 
   // Send a request to the login URL and save the returned JWT
-  login(context, creds, redirect) {
+  login:(context, creds, redirect) => {
     context.$http.post(LOGIN_URL, creds, (data) => {
     //   localStorage.setItem('id_token', data.id_token)
     //   localStorage.setItem('access_token', data.access_token)
@@ -24,7 +24,7 @@ export default {
 
       // Redirect to a specified route
       if(redirect) {
-        router.go(redirect)        
+        context.router.go(redirect)        
       }
 
     }).error((err) => {

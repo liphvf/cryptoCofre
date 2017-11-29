@@ -6,7 +6,6 @@ const authSevice = require("../services/authService");
 
 exports.get = async (req, res, next) => {
     try {
-
         let token = req.body.token || req.query.token || req.headers['x-access-token'];
         
         let tokenData = await authSevice.decodeToken(token);

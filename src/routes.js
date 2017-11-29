@@ -1,13 +1,14 @@
 import Home from "./components/home.vue";
+import Password from "./components/password.vue";
 import Login from "./components/login.vue";
 export default 
 [
     {
-        path:'/',
-        component: Home
+        path:'/password',
+        component: Password
     },
     {
-        path:'/login',
+        path:'/',
         component: Login
     }
 ]

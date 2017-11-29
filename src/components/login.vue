@@ -30,10 +30,19 @@ export default {
   },
   methods: {
     post: function () {
-      auth.login(this, {
+      this.$http.post("http://localhost:3000/api/auth/authenticate", {
         login: this.login,
         password: this.password
+      }).then((data)=>{
+        console.log("resposta",data)
+        // console.log(this.$router)
+        this.token = data.body.token;
+        this.$router.push({path:'password', query: {token: this.token}});
+        
       })
+    },
+    go: function() {
+      return this.$router.push('home')
     }
   }
 };
