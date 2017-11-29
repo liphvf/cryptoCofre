@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 // import Login from "./components/login";
+
 // import Home from "./components/home";
 
 export default {
