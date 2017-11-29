@@ -1,19 +1,15 @@
 <template>
     <div>
     <div  class="app">
-        <!-- <li v-for="">
-
-            ASSIM QUE ABRIR PEGA A TOKEN E FAZ A BUSCA E COLOCA AQUI COM 2 BOTOES, ADD E REMOVE
-            
-        </li> -->
         <div style="display: block;">
         <button @click.prevent="get">Pegar Senha</button>
         </div>
 
-        <div v-for="pwd in passwords" :key="pwd.name" class="password">
+        <div v-for="(pwd, index) in passwords" :key="pwd.name" class="password">
+          {{index}}
          <div>Name: {{pwd.name}}</div>
          <div>Password: {{pwd.password}}</div>
-         <button>Delete</button>
+         <button @click.prevent="del(index)">Delete</button>
         </div>
         
         <div>
@@ -66,14 +62,12 @@ export default {
         this.get();
       })
     },
-    delete: function () {
-      this.$http.post("http://localhost:3000/api/auth/authenticate", {
-        login: this.login,
-        password: this.password
-      }).then((data)=>{
-        console.log("resposta",data)
-        console.log(data.token)
-      })
+    del: function (index) {
+      console.log();
+      let id = this.passwords[index]._id;
+      this.$http.delete("http://localhost:3000/api/password/"+id+"?token="+this.token).then((data)=>{
+        this.get();
+      });
     },
   }
 };
