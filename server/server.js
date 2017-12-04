@@ -15,6 +15,7 @@ mongoose.Promise = global.Promise;
 // Get models
 const User = require('./models/users');
 const Password = require('./models/passwords');
+const Log = require('./models/log');
 
 
 const app = express();

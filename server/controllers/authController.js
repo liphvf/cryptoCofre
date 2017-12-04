@@ -6,6 +6,8 @@ const userController = require("./usersController");
 
 const authService = require("../services/authService");
 
+const logService = require("../services/logService");
+
 exports.authenticate = async(req, res, next) => {
     try {
         const user = await userController.authenticateUser({
@@ -39,6 +41,7 @@ exports.authenticate = async(req, res, next) => {
         res.status(500).send({
             message: `Falha ao processar sua requisição:  ${e.message}`
         });
+        logService.addLog(`Falha ao processar sua requisição:  ${e.message}`);
     }
 };
 
