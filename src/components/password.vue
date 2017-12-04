@@ -37,12 +37,6 @@ export default {
       token: this.$route.query.token
     };
   },
-  // created: () => {
-  //   // token = this.$route.params.token;
-  //   // console.log("xuxu");
-  //   // console.log(this.$route);
-  //   this.get();
-  // },
   methods: {
     get: function () {
       this.$http.get("http://localhost:3000/api/password?token="+this.token).then((data)=>{
@@ -63,9 +57,11 @@ export default {
       })
     },
     del: function (index) {
-      console.log();
+      console.log("index",index);
+      console.log("index",this.passwords);
       let id = this.passwords[index]._id;
-      this.$http.delete("http://localhost:3000/api/password/"+id+"?token="+this.token).then((data)=>{
+      console.log("id",id);
+      this.$http.delete(`http://localhost:3000/api/password/${id}?token=${this.token}`).then((data)=>{
         this.get();
       });
     },

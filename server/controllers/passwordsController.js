@@ -58,7 +58,16 @@ exports.delete = async (req, res, next) => {
 
     let user = await userController.getByIdInternal(tokenData.id);
 
-    await Password.findOneAndRemove(req.body.id);
+    let id = {
+      _id: req.params.id
+    }
+
+    if (id == undefined || id == null) {
+        res.status(404).send({
+            message: "Id não encontrado"
+          });
+    }
+    await Password.findOneAndRemove(id);
 
     res.status(200).send({
       mensage: `Password Deletado!`

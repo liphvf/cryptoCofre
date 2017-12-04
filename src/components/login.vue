@@ -9,7 +9,8 @@
         Password:<br>
         <input type="password" name="password" v-model="password">
         <br><br>
-        <input @click.prevent="post" type="submit" value="Submit">
+        <input @click.prevent="post" type="submit" value="Log in">
+        <input @click.prevent="newUser" type="submit" value="Log on">
 
       </form> 
 
@@ -17,7 +18,6 @@
 </template>
 
 <script>
-
 import auth from "../auth";
 export default {
   data() {
@@ -29,20 +29,33 @@ export default {
     };
   },
   methods: {
-    post: function () {
-      this.$http.post("http://localhost:3000/api/auth/authenticate", {
-        login: this.login,
-        password: this.password
-      }).then((data)=>{
-        console.log("resposta",data)
-        // console.log(this.$router)
-        this.token = data.body.token;
-        this.$router.push({path:'password', query: {token: this.token}});
-        
-      })
+    post: function() {
+      this.$http
+        .post("http://localhost:3000/api/auth/authenticate", {
+          login: this.login,
+          password: this.password
+        })
+        .then(data => {
+          console.log("resposta", data);
+          // console.log(this.$router)
+          this.token = data.body.token;
+          this.$router.push({ path: "password", query: { token: this.token } });
+        });
     },
     go: function() {
-      return this.$router.push('home')
+      return this.$router.push("home");
+    },
+    newUser: function() {
+      this.$http
+        .post("http://localhost:3000/api/user", {
+          login: this.login,
+          password: this.password
+        })
+        .then(data => {
+          console.log("resposta", data);
+          this.token = data.body.token;
+          this.$router.push({ path: "password", query: { token: this.token } });
+        });
     }
   }
 };
